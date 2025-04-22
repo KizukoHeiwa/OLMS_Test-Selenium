@@ -10,11 +10,17 @@ import java.time.Duration;
 
 // page_url = https://olms.codedao.io.vn
 public class LoginPage {
+    WebDriver driver;
+
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     By emailOrUsername = By.id("emailOrUsername");
     By password = By.id("password");
     By loginButton = By.xpath("//button[@type='submit']");
 
-    public void login(WebDriver driver, String emailOrUsername, String password) {
+    public void login(String emailOrUsername, String password) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(loginButton));
 

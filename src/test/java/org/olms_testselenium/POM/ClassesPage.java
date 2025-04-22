@@ -11,6 +11,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ClassesPage {
+    WebDriver driver;
+
+    public ClassesPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     By AsideList_Label(String label) {
         return By.xpath("//aside//li//a[. = '" + label + "']");
     }
@@ -27,7 +33,7 @@ public class ClassesPage {
         return By.xpath("//table//tr[contains(., '"+name+"')]//.[contains(@data-testid, '"+function+"')]//ancestor::button");
     }
 
-    public void click_AsideLabel(WebDriver driver, String label) {
+    public void click_AsideLabel(String label) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(this.AsideList_Label(label)));
@@ -41,7 +47,7 @@ public class ClassesPage {
         }
     }
 
-    public void click_Education(WebDriver driver, String to) {
+    public void click_Education(String to) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(this.AsideList_Education(to)));
 
@@ -49,7 +55,7 @@ public class ClassesPage {
         actions.moveToElement(driver.findElement(this.AsideList_Education(to))).click().perform();
     }
 
-    public void click_ClassByName(WebDriver driver, String name) {
+    public void click_ClassByName(String name) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(this.List_ClassByName(name)));
@@ -65,7 +71,7 @@ public class ClassesPage {
         }
     }
 
-    public void click_BtnClassByNameByFunction(WebDriver driver, String name, String function) {
+    public void click_BtnClassByNameByFunction(String name, String function) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(this.Btn_ClassByNameByFunction(name, function)));

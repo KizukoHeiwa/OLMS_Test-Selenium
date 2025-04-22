@@ -12,6 +12,12 @@ import java.time.Duration;
 import java.util.Objects;
 
 public class EditClassDialog {
+    WebDriver driver;
+
+    public EditClassDialog(WebDriver driver) {
+        this.driver = driver;
+    }
+
     By inputFieldByLegend(String legend) {
         return By.xpath("//div[@role='dialog']//label[contains(text(), '"+legend+"')]//following-sibling::div/input");
     }
@@ -24,7 +30,7 @@ public class EditClassDialog {
         return By.xpath("//div[@role='dialog']//button[contains(text(), '"+text+"')]");
     }
 
-    public void setInputFieldByLegend(WebDriver driver, String legend, String value) {
+    public void setInputFieldByLegend(String legend, String value) {
         WebElement element = driver.findElement(this.inputFieldByLegend(legend));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -42,7 +48,7 @@ public class EditClassDialog {
         }
     }
 
-    public void clickBtnByText(WebDriver driver, String text) {
+    public void clickBtnByText(String text) {
         WebElement element = driver.findElement(this.btnByText(text));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

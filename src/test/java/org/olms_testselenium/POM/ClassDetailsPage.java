@@ -17,6 +17,8 @@ public class ClassDetailsPage {
 
     By GeneralInformationByIndexFromList = By.xpath("//div[@role = 'button']//following-sibling::div//input[@disabled = '']");
 
+    By ErrorPopUp = By.xpath("//div[@role = 'dialog']//h2[contains(text(), 'Lỗi')]");
+
     public void click_Student_ByIndex(WebDriver driver, int index) {
         driver.findElement(this.StudentByIndexFromList(index)).click();
     }
@@ -35,6 +37,15 @@ public class ClassDetailsPage {
             }
 
             return generalInformation;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void check_ErrorPopUp(WebDriver driver) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(this.ErrorPopUp));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
