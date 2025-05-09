@@ -35,12 +35,14 @@ public class ClassesPage {
 
     public void click_AsideLabel(String label) {
         try {
+            WebElement element = driver.findElement(this.AsideList_Label(label));
+            element.sendKeys(Keys.ARROW_DOWN);
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(this.AsideList_Label(label)));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
             Thread.sleep(500);
 
             Actions actions = new Actions(driver);
-            actions.moveToElement(driver.findElement(this.AsideList_Label(label))).click().perform();
+            actions.moveToElement(element).click().perform();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -48,11 +50,12 @@ public class ClassesPage {
     }
 
     public void click_Education(String to) {
+        WebElement element = driver.findElement(this.AsideList_Education(to));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(this.AsideList_Education(to)));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
 
         Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(this.AsideList_Education(to))).click().perform();
+        actions.moveToElement(element).click().perform();
     }
 
     public void click_ClassByName(String name) {
