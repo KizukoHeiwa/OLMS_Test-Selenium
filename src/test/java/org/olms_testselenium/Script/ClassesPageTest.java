@@ -361,7 +361,7 @@ public class ClassesPageTest extends BaseTest {
             int soBuoiConLai = Integer.parseInt(classDetailsPage.get_SoBuoiConLaiByName("Hoàng Anh"));
 
             classDetailsPage.click_ActionStudentByNameByFunction("Hoàng Anh", "IsoIcon");
-            classDetailsPage.set_SoBuoiField("3");
+            classDetailsPage.set_SoBuoiField("@!#!@");
 
             classDetailsPage.click_ButtonByText("Lưu");
 
