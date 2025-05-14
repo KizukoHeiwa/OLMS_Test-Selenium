@@ -119,6 +119,8 @@ public class ClassDetailsPage {
 
     public void set_StudentCboBox(String value) {
         try {
+            if (value.isEmpty()) return;
+
             WebElement element = driver.findElement(this.StudentCboBox);
             element.sendKeys(value);
 

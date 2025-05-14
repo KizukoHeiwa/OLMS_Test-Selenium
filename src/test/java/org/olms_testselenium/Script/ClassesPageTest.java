@@ -2,6 +2,7 @@ package org.olms_testselenium.Script;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.olms_testselenium.Listener.SimpleListener;
 import org.olms_testselenium.POM.ClassDetailsPage;
 import org.olms_testselenium.POM.ClassesPage;
 import org.olms_testselenium.POM.EditClassDialog;
@@ -11,13 +12,14 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
-//@Listeners(SimpleListener.class)
+@Listeners(SimpleListener.class)
 public class ClassesPageTest extends BaseTest {
     static Logger logger = LogManager.getLogger("LoginPageTest");
 
@@ -31,6 +33,8 @@ public class ClassesPageTest extends BaseTest {
 
     void pointToClassByName(String className) {
         pointToClassesPage();
+
+        classesPage.search_ClassByName(className);
         classesPage.click_ClassByName(className);
     }
 
@@ -61,7 +65,7 @@ public class ClassesPageTest extends BaseTest {
     @Test
     public void verifyData() {
         String className = "ID2";
-        String[] fieldsData = {"Kindy 4", "15/01/2024", "Đang học", "7", "1"};
+        String[] fieldsData = {"ID2", "14/04/2025", "Đang học", "0", "1"};
 
         pointToClassByName(className);
 
@@ -83,6 +87,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"Sunny 66", "11", "21/04/2024", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -102,6 +108,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"", "11", "21/04/2024", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -122,6 +130,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"!@#*@", "11", "21/04/2024", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -142,6 +152,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"Sunny 66", "#@!$%", "21/04/2024", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -162,6 +174,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"Sunny 66", "11", "01/01/0000", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -182,6 +196,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"Sunny 66", "11", "01/01/0001", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -202,6 +218,8 @@ public class ClassesPageTest extends BaseTest {
         String[] data = {"Sunny 66", "11", "", "Online"};
 
         pointToClassesPage();
+        classesPage.search_ClassByName(className);
+
         classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
         EditClassDialog editClassDialog = new EditClassDialog(driver);
@@ -237,6 +255,73 @@ public class ClassesPageTest extends BaseTest {
     }
 
     @Test
+    public void ghiDanhHocVienHocThu_Invalid() {
+        try {
+            String className = "ID2";
+            pointToClassByName(className);
+
+            classDetailsPage.click_ButtonByText("Ghi danh");
+
+            classDetailsPage.set_StudentCboBox("");
+            classDetailsPage.click_StudentTrialChk();
+            Assert.assertEquals(classDetailsPage.get_SoBuoiField(), "2");
+            // <0 mean nothing selected; >0 mean select by index
+            classDetailsPage.click_LichHoc_ByIndex(1);
+            classDetailsPage.click_ButtonByText("Lưu");
+
+            Thread.sleep(1000);
+
+            classDetailsPage.check_ErrorPopUp();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void ghiDanhHocVien() {
+        try {
+            String className = "ID2";
+            pointToClassByName(className);
+
+            classDetailsPage.click_ButtonByText("Ghi danh");
+
+            classDetailsPage.set_StudentCboBox("Hoàng Anh");
+            classDetailsPage.set_SoBuoiField("5");
+            // <0 mean nothing selected; >0 mean select by index
+            classDetailsPage.click_LichHoc_ByIndex(1);
+            classDetailsPage.click_ButtonByText("Lưu");
+
+            Thread.sleep(1000);
+
+            Assert.assertEquals(classDetailsPage.get_StatusStudentByName("Hoàng Anh"), "Học thử");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void ghiDanhHocVien_Invalid() {
+        try {
+            String className = "ID2";
+            pointToClassByName(className);
+
+            classDetailsPage.click_ButtonByText("Ghi danh");
+
+            classDetailsPage.set_StudentCboBox("Hoàng Anh");
+            classDetailsPage.set_SoBuoiField("-10");
+            // <0 mean nothing selected; >0 mean select by index
+            classDetailsPage.click_LichHoc_ByIndex(1);
+            classDetailsPage.click_ButtonByText("Lưu");
+
+            Thread.sleep(1000);
+
+            Assert.assertEquals(classDetailsPage.get_StatusStudentByName("Hoàng Anh"), "Nợ phí");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
     public void chinhSuaSoBuoi() {
         try {
             String className = "ID2";
@@ -256,6 +341,28 @@ public class ClassesPageTest extends BaseTest {
             Assert.assertEquals(classDetailsPage.get_SoBuoiGhiByName("Hoàng Anh"), String.valueOf(soBuoiGhi + 3));
             Assert.assertEquals(classDetailsPage.get_SoBuoiConLaiByName("Hoàng Anh"), String.valueOf(soBuoiConLai + 3));
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void chinhSuaSoBuoi_Invalid() {
+        try {
+            String className = "ID2";
+            pointToClassByName(className);
+
+            int soBuoiGhi = Integer.parseInt(classDetailsPage.get_SoBuoiGhiByName("Hoàng Anh"));
+            int soBuoiConLai = Integer.parseInt(classDetailsPage.get_SoBuoiConLaiByName("Hoàng Anh"));
+
+            classDetailsPage.click_ActionStudentByNameByFunction("Hoàng Anh", "IsoIcon");
+            classDetailsPage.set_SoBuoiField("3");
+
+            classDetailsPage.click_ButtonByText("Lưu");
+
+            Thread.sleep(1000);
+
+            classDetailsPage.check_ErrorPopUp();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

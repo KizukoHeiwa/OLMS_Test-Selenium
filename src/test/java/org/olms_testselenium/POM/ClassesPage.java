@@ -33,6 +33,8 @@ public class ClassesPage {
         return By.xpath("//table//tr[contains(., '"+name+"')]//.[contains(@data-testid, '"+function+"')]//ancestor::button");
     }
 
+    By SearchField = By.xpath("//input[@placeholder='Tìm kiếm lớp học']");
+
     public void click_AsideLabel(String label) {
         try {
             WebElement element = driver.findElement(this.AsideList_Label(label));
@@ -68,6 +70,16 @@ public class ClassesPage {
 //
 //            Actions actions = new Actions(driver);
 //            actions.moveToElement(element).click(element).perform();
+            element.sendKeys(Keys.ENTER);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void search_ClassByName(String name) {
+        try {
+            WebElement element = driver.findElement(this.SearchField);
+            element.sendKeys(name);
             element.sendKeys(Keys.ENTER);
         } catch (Exception e) {
             throw new RuntimeException(e);
