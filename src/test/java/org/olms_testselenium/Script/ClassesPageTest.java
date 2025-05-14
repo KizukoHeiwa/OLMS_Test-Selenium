@@ -80,23 +80,28 @@ public class ClassesPageTest extends BaseTest {
 
     @Test
     public void modifyGeneralInformation() {
-        String className = "Sunny 6";
-        String buttonFunction = "Edit";
+        try {
+            String className = "Sunny 6";
+            String buttonFunction = "Edit";
 
-        String[] legends = {"Tên lớp học", "Độ tuổi", "Ngày bắt đầu", "Khoá học"};
-        String[] data = {"Sunny 66", "11", "21/04/2024", "Online"};
+            String[] legends = {"Tên lớp học", "Độ tuổi", "Ngày bắt đầu", "Khoá học"};
+            String[] data = {"Sunny 66", "11", "21/04/2024", "Online"};
 
-        pointToClassesPage();
-        classesPage.search_ClassByName(className);
+            pointToClassesPage();
+            classesPage.search_ClassByName(className);
 
-        classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
+            classesPage.click_BtnClassByNameByFunction(className, buttonFunction);
 
-        EditClassDialog editClassDialog = new EditClassDialog(driver);
-        for (int i = 0; i < legends.length; i++) {
-            editClassDialog.setInputFieldByLegend(legends[i], data[i]);
+            EditClassDialog editClassDialog = new EditClassDialog(driver);
+            for (int i = 0; i < legends.length; i++) {
+                editClassDialog.setInputFieldByLegend(legends[i], data[i]);
+            }
+
+            editClassDialog.clickBtnByText("Lưu");
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
-        editClassDialog.clickBtnByText("Lưu");
     }
 
     @Test

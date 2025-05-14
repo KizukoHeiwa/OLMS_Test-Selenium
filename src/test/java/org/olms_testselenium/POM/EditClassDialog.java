@@ -31,7 +31,7 @@ public class EditClassDialog {
     }
 
     public void setInputFieldByLegend(String legend, String value) {
-        if (value.isEmpty()) return;
+        if (legend.equals("Khoá học") && value.isEmpty()) return;
         WebElement element = driver.findElement(this.inputFieldByLegend(legend));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
