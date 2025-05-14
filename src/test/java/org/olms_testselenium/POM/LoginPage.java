@@ -21,12 +21,17 @@ public class LoginPage {
     By loginButton = By.xpath("//button[@type='submit']");
 
     public void login(String emailOrUsername, String password) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(loginButton));
 
-        driver.findElement(this.emailOrUsername).sendKeys(emailOrUsername);
-        driver.findElement(this.password).sendKeys(password);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(loginButton)).click().perform();
+            driver.findElement(this.emailOrUsername).sendKeys(emailOrUsername);
+            driver.findElement(this.password).sendKeys(password);
+            Thread.sleep(500);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(driver.findElement(loginButton)).click().perform();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

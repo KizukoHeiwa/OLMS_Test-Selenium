@@ -64,8 +64,8 @@ public class ClassesPageTest extends BaseTest {
 
     @Test
     public void verifyData() {
-        String className = "ID2";
-        String[] fieldsData = {"ID2", "14/04/2025", "Đang học", "0", "1"};
+        String className = "ID5";
+        String[] fieldsData = {"ID5", "14/04/2025", "Đang học", "2", "1"};
 
         pointToClassByName(className);
 
@@ -234,7 +234,7 @@ public class ClassesPageTest extends BaseTest {
     @Test
     public void ghiDanhHocVienHocThu() {
         try {
-            String className = "ID2";
+            String className = "ID1";
             pointToClassByName(className);
 
             classDetailsPage.click_ButtonByText("Ghi danh");
@@ -280,7 +280,7 @@ public class ClassesPageTest extends BaseTest {
     @Test
     public void ghiDanhHocVien() {
         try {
-            String className = "ID2";
+            String className = "ID3";
             pointToClassByName(className);
 
             classDetailsPage.click_ButtonByText("Ghi danh");
@@ -302,7 +302,7 @@ public class ClassesPageTest extends BaseTest {
     @Test
     public void ghiDanhHocVien_Invalid() {
         try {
-            String className = "ID2";
+            String className = "ID4";
             pointToClassByName(className);
 
             classDetailsPage.click_ButtonByText("Ghi danh");
@@ -324,7 +324,7 @@ public class ClassesPageTest extends BaseTest {
     @Test
     public void chinhSuaSoBuoi() {
         try {
-            String className = "ID2";
+            String className = "ID1";
             pointToClassByName(className);
 
             int soBuoiGhi = Integer.parseInt(classDetailsPage.get_SoBuoiGhiByName("Hoàng Anh"));
@@ -349,7 +349,7 @@ public class ClassesPageTest extends BaseTest {
     @Test
     public void chinhSuaSoBuoi_Invalid() {
         try {
-            String className = "ID2";
+            String className = "ID1";
             pointToClassByName(className);
 
             int soBuoiGhi = Integer.parseInt(classDetailsPage.get_SoBuoiGhiByName("Hoàng Anh"));
