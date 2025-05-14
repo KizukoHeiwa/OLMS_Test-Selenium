@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="ClassesPageTest.java">
+        <classes>
+            <class name="org.olms_testselenium.Script.ClassesPageTest">
+                <methods>
+                    <include name="verifyData"/>
+                    <include name="modifyGeneralInformation"/>
+                    <include name="modifyGeneralInformation_ClassNameInvalid_1"/>
+                    <include name="modifyGeneralInformation_ClassNameInvalid_2"/>
+                    <include name="modifyGeneralInformation_AgeInvalid"/>
+                    <include name="modifyGeneralInformation_DateInvalid_1"/>
+                    <include name="modifyGeneralInformation_DateInvalid_2"/>
+                    <include name="modifyGeneralInformation_DateInvalid_3"/>
+                    <include name="ghiDanhHocVienHocThu"/>
+                    <include name="ghiDanhHocVienHocThu_Invalid"/>
+                    <include name="ghiDanhHocVien"/>
+                    <include name="ghiDanhHocVien_Invalid"/>
+                    <include name="chinhSuaSoBuoi"/>
+                    <include name="chinhSuaSoBuoi_Invalid"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="LoginPageTest.java">
+        <classes>
+            <class name="org.olms_testselenium.Script.LoginPageTest">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
