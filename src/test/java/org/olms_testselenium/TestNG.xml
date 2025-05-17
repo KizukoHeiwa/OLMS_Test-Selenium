@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true"
-          name="ClassesPageTest.java">
+          name="HoangThuy_ClassesPageTest.java">
         <classes>
             <class name="org.olms_testselenium.Script.ClassesPageTest">
                 <methods>
@@ -25,11 +25,57 @@
         </classes>
     </test>
     <test verbose="2" preserve-order="true"
-          name="LoginPageTest.java">
+          name="HoangThuy_LoginPageTest.java">
         <classes>
             <class name="org.olms_testselenium.Script.LoginPageTest">
                 <methods>
                     <include name="login"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="ChuVanKhanh_CreateClassesTest.java">
+        <classes>
+            <class name="org.olms_testselenium.Script.CreateClassesTest">
+                <methods>
+                    <include name="leavingAllFieldsEmpty"/>
+                    <include name="createClassFunctionValidData"/>
+                    <include name="leavingScheduleFieldEmpty"/>
+                    <include name="leavingClassNameEmpty"/>
+                    <include name="leavingAgeFieldEmpty"/>
+                    <include name="leavingStartingDateFieldEmpty"/>
+                    <include name="leavingCourseFieldEmpty"/>
+                    <include name="leavingClassroomFieldEmpty"/>
+                    <include name="leavingTeacherFieldEmpty"/>
+                    <include name="createClassFunctionWithInvalidAgeData"/>
+                    <include name="startDateEqualToEndDate"/>
+                    <include name="testDefaultStatusIsDangHoc"/>
+                    <include name="testStatusCanChange1"/>
+                    <include name="testStatusCanChange2"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="ChuVanKhanh_EditEmployeeDetailsTest.java">
+        <classes>
+            <class name="org.olms_testselenium.Script.EditEmployeeDetailsTest">
+                <methods>
+                    <include name="invalidBirthday"/>
+                    <include name="unableEditUsername1"/>
+                    <include name="leavingUsernameEmpty"/>
+                    <include name="leavingPhoneNumberEmpty"/>
+                    <include name="testPasswordEqualUsernameError"/>
+                    <include name="testPasswordEqualFullnameError"/>
+                    <include name="testPasswordEqualPhoneNumber"/>
+                    <include name="UsingInvalidPhoneNumber1"/>
+                    <include name="UsingInvalidPhoneNumber2"/>
+                    <include name="TestCancelBtn"/>
+                    <include name="invalidNameUpdate1"/>
+                    <include name="invalidNameUpdate2"/>
+                    <include name="invalidNameUpdate3"/>
+                    <include name="invalidNameUpdate4"/>
                 </methods>
             </class>
         </classes>
