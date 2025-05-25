@@ -80,4 +80,11 @@
             </class>
         </classes>
     </test>
+    <test verbose="2" preserve-order="true"
+          name="HaHoang_StaffPageTest.java">
+        <classes>
+            <class name="org.olms_testselenium.Script.StaffPageTest"/>
+        </classes>
+    </test>
+
 </suite>
